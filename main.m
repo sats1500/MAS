@@ -9,10 +9,11 @@ Bus = dt.bus;
 Gen= dt.gen;
 Gencost=dt.gencost;
 Branch=dt.branch;
-
+Vmax=max(Bus(:,12));
+Vmin=min(Bus(:,13));
 %%
-ub = [2.0*ones(1,node), 2.0*ones(1,node), Gen(:,9)', Gen(:,4)'];
-lb = [0.0*ones(1,node), -2.0*ones(1,node), Gen(:,10)', Gen(:,5)'] ;
+ub = [Vmax*ones(1,node), Vmax*ones(1,node), Gen(:,9)', Gen(:,4)'];
+lb = [-Vmax*ones(1,node), -Vmax*ones(1,node), Gen(:,10)', Gen(:,5)'] ;
 x0=  [1.0*ones(1,node), 0.0*ones(1,node), 0.0*ones(1,ng), 0.0*ones(1,ng)]; 
 
 A= [];
